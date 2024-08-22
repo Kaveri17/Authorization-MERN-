@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
         require:true,
     },
     lastLogin:{
-        type:String,
+        type:Date,
         default:Date.now,
     },
     isVerified:{
