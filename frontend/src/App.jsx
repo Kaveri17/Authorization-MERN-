@@ -3,6 +3,7 @@ import FloatingShapes from "./components/FloatingShapes"
 
 import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
+import EmailVerificationPage from "./pages/EmailVerificationPage"
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Route path='/' element={"Home"}/>
         <Route path='/signup' element={<SignUpPage/>}/>
         <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/verify-email' element={<EmailVerificationPage/>}/>
+        <Route path='/forget-password' element={<LoginPage/>}/>
 
       </Routes>
     </div>
