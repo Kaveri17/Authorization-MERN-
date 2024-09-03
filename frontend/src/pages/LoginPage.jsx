@@ -3,14 +3,17 @@ import { useState } from "react";
 import { Lock, Mail, Loader } from "lucide-react";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isLoading = false
+  const { login, isLoading, error } = useAuthStore();
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
+    await login(email, password);
+
   };
 
   return (

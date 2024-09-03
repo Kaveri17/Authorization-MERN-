@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// import toast from "react-host-toast";
+import toast from "react-hot-toast";
+import { useAuthStore } from "../store/authStore";
 
 const EmailVerificationPage = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
-  const isLoading = false;
+  const { error, isLoading, verifyEmail } = useAuthStore();
+
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -47,14 +49,14 @@ const EmailVerificationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const verificationCode = code.join(""); //joins the individual digit code present in the code array to send as a whole number
-    // try{
-    //     await verifyEmail(verificationCode)
-    //     navigate("/")
-    //     toast.success("Email Verified Successfully")
-    // }catch(error){
-    //     console.log(error)
-    // }
-    alert(`Verification Code Submitted: ${verificationCode}`);
+    try{
+        await verifyEmail(verificationCode)
+        navigate("/")
+        toast.success("Email Verified Successfully")
+    }catch(error){
+        console.log(error)
+    }
+    // alert(`Verification Code Submitted: ${verificationCode}`);
   };
 
   //   for auto submission when all fields are filled
